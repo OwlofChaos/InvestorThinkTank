@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #3E5754;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    padding: 2vh 10vh;
+    background: #E7FFA3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 1vh 1vh 1vh rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-size: 5vh;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 200;
+}
+
+.nav a {
+    position: relative;
+    font-size: 3.2vh;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 200;
+    margin-left: 4vh;
+}
+
+.nav a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 0.8vh;
+    background-color: #3E5754;
+    transition: .3s;
+}
+
+.nav a:hover::before {
+    width: 100%;
+}
+
+.profile {
+    width: 10vh;
+    height: 8vh;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 13vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    padding-bottom: 3vh;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    padding: 4.2vh 4.6vh;
+    background-color: #D9D9D9;
+    cursor: pointer;
+    font-size: 3.2vh;
+    color: rgb(0, 0, 0);
+    font-weight: 200;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background: #E7FFA3;
+}
+
+.btn.active {
+    background-color: #E7FFA3;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.box{
+    width: 100%;
+    background-color: black;
+    padding: 2vh;
+    border-radius: 1vh;
+}
+
+.chat-container {
+    width: 90%;
+    height: 70vh;
+    max-width: 80%;
+    background-color: #e3e3e3;
+    padding: 2vh;
+    border-radius: 1vh;
+    box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.3);
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2vh;
+}
+
+.avatar {
+    width: 8vh;
+    height: 8vh;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-right: 2vh;
+}
+
+.text-content {
+    background-color: #E7FFA3;
+    padding: 2vh;
+    border-radius: 0.5vh;
+    box-shadow: 0 0.1vh 0.3vh rgba(0,0,0,0.3);
+    width: 100%;
+}
+
+.username {
+    font-weight: bold;
+    margin-bottom: 0.5vh;
+    font-size: 2vh;
+}
+
+.message-text {
+    margin-bottom: 0.5vh;
+    font-size: 2vh;
+}
