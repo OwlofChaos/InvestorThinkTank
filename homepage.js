@@ -2,47 +2,36 @@ function postMessage() {
     const messageInput = document.getElementById('message-input');
     const imageInput = document.getElementById('image-input');
     const messageText = messageInput.value.trim();
-    const file = imageInput.files[0];
+    const imageFile = imageInput.files[0];
 
-    if (messageText === '' && !file) return;
+    if (messageText === '' && !imageFile) return;
 
-    // Create new message element
-    const newMessage = document.createElement('div');
-    newMessage.className = 'message';
+    const reader = new FileReader();
+    reader.onloadend = function() {
+        const imageDataUrl = imageFile ? reader.result : null;
 
-    let messageContent = `
-        <div class="avatar"></div>
-        <div class="text-content">
-            <div class="username">Me</div>
-    `;
-
-    if (messageText !== '') {
-        messageContent += `<div class="message-text">${messageText}</div>`;
-        saveMessageToLocalStorage({ username: 'Me', text: messageText });
-    }
-
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const imageUrl = e.target.result;
-            messageContent += `<div class="message-image"><img src="${imageUrl}" alt="Posted Image"></div>`;
-            saveMessageToLocalStorage({ username: 'Me', image: imageUrl });
-            newMessage.innerHTML = messageContent + `</div>`;
-            const messagesContainer = document.getElementById('messages');
-            messagesContainer.appendChild(newMessage);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        const newMessage = {
+            username: 'Me',
+            text: messageText,
+            image: imageDataUrl
         };
-        reader.readAsDataURL(file);
-    } else {
-        newMessage.innerHTML = messageContent + `</div>`;
-        const messagesContainer = document.getElementById('messages');
-        messagesContainer.appendChild(newMessage);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
 
-    // Clear input
-    messageInput.value = '';
-    imageInput.value = '';
+        // Save message to local storage
+        saveMessageToLocalStorage(newMessage);
+
+        // Clear input fields
+        messageInput.value = '';
+        imageInput.value = '';
+
+        // Add new message to messages container
+        addMessageToContainer(newMessage);
+    };
+
+    if (imageFile) {
+        reader.readAsDataURL(imageFile);
+    } else {
+        reader.onloadend();
+    }
 }
 
 function saveMessageToLocalStorage(message) {
@@ -51,45 +40,37 @@ function saveMessageToLocalStorage(message) {
     localStorage.setItem('messages', JSON.stringify(savedMessages));
 }
 
-function loadMessagesFromLocalStorage() {
-    const savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+function addMessageToContainer(message) {
     const messagesContainer = document.getElementById('messages');
-
-    savedMessages.forEach(msg => {
-        const messageElement = document.createElement('div');
-        messageElement.className = 'message';
-        let messageContent = `
-            <div class="avatar"></div>
-            <div class="text-content">
-                <div class="username">${msg.username}</div>
-        `;
-        if (msg.text) {
-            messageContent += `<div class="message-text">${msg.text}</div>`;
-        }
-        if (msg.image) {
-            messageContent += `<div class="message-image"><img src="${msg.image}" alt="Posted Image"></div>`;
-        }
-        messageElement.innerHTML = messageContent + `</div>`;
-        messagesContainer.appendChild(messageElement);
-    });
+    const messageElement = document.createElement('div');
+    messageElement.className = 'message';
+    let messageContent = `
+        <div class="avatar"></div>
+        <div class="text-content">
+            <div class="username">${message.username}</div>
+    `;
+    if (message.text) {
+        messageContent += `<div class="message-text">${message.text}</div>`;
+    }
+    if (message.image) {
+        messageContent += `<div class="message-image"><img src="${message.image}" alt="Posted Image"></div>`;
+    }
+    messageElement.innerHTML = messageContent + `</div>`;
+    messagesContainer.appendChild(messageElement);
 
     // Scroll to the bottom of the messages container
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
-function clearMessages() {
+function loadMessagesFromLocalStorage() {
     const savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+    savedMessages.forEach(addMessageToContainer);
+}
+
+function clearMessages() {
     const messagesContainer = document.getElementById('messages');
-    const messages = Array.from(messagesContainer.children);
-
-    const filteredMessages = savedMessages.filter(msg => msg.username !== 'Me');
-    localStorage.setItem('messages', JSON.stringify(filteredMessages));
-
-    messages.forEach(message => {
-        if (message.querySelector('.username').textContent === 'Me') {
-            messagesContainer.removeChild(message);
-        }
-    });
+    messagesContainer.innerHTML = '';
+    localStorage.removeItem('messages');
 }
 
 document.addEventListener('DOMContentLoaded', loadMessagesFromLocalStorage);
