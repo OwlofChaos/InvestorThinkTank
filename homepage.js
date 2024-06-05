@@ -1,9 +1,12 @@
+// main.js
+
 function postMessage() {
     const messageInput = document.getElementById('message-input');
     const messageText = messageInput.value.trim();
 
     if (messageText === '') return;
 
+    // Create new message element
     const newMessage = document.createElement('div');
     newMessage.className = 'message';
     newMessage.innerHTML = `
@@ -14,12 +17,18 @@ function postMessage() {
         </div>
     `;
 
-    const chatContainer = document.getElementById('chat-container');
-    chatContainer.appendChild(newMessage);
+    // Add new message to messages container
+    const messagesContainer = document.getElementById('messages');
+    messagesContainer.appendChild(newMessage);
 
+    // Save message to local storage
     saveMessageToLocalStorage(messageText);
 
+    // Clear input
     messageInput.value = '';
+
+    // Scroll to the bottom of the messages container
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
 function saveMessageToLocalStorage(message) {
@@ -30,7 +39,7 @@ function saveMessageToLocalStorage(message) {
 
 function loadMessagesFromLocalStorage() {
     const savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
-    const chatContainer = document.getElementById('chat-container');
+    const messagesContainer = document.getElementById('messages');
 
     savedMessages.forEach(msg => {
         const messageElement = document.createElement('div');
@@ -42,7 +51,25 @@ function loadMessagesFromLocalStorage() {
                 <div class="message-text">${msg.text}</div>
             </div>
         `;
-        chatContainer.appendChild(messageElement);
+        messagesContainer.appendChild(messageElement);
+    });
+
+    // Scroll to the bottom of the messages container
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function clearMessages() {
+    const savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+    const messagesContainer = document.getElementById('messages');
+    const messages = Array.from(messagesContainer.children);
+
+    const filteredMessages = savedMessages.filter(msg => msg.username !== 'Me');
+    localStorage.setItem('messages', JSON.stringify(filteredMessages));
+
+    messages.forEach(message => {
+        if (message.querySelector('.username').textContent === 'Me') {
+            messagesContainer.removeChild(message);
+        }
     });
 }
 
