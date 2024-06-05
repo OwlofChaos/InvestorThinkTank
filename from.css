@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #3E5754;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    padding: 2vh 10vh;
+    background: #E7FFA3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 1vh 1vh 1vh rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-size: 5vh;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 200;
+}
+
+.nav a {
+    position: relative;
+    font-size: 3.2vh;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 200;
+    margin-left: 4vh;
+}
+
+.nav a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 0.8vh;
+    background-color: #3E5754;
+    transition: .3s;
+}
+
+.nav a:hover::before {
+    width: 100%;
+}
+
+.container {
+    width: 90%;
+    max-width: 80%;
+    background-color: #e3e3e3;
+    padding: 2vh;
+    border-radius: 1vh;
+    box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.3);
+    margin: 25vh auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container h2 {
+    font-size: 3.5vh;
+    margin-bottom: 2vh;
+}
+
+.container .form-group {
+    margin-bottom: 2vh;
+}
+
+.container input[type="text"],
+.container input[type="email"],
+.container input[type="password"] {
+    width: 100%;
+    padding: 1vh;
+    font-size: 2.5vh;
+    border: 1px solid #ccc;
+    border-radius: 0.5vh;
+}
+
+.container button {
+    background-color: #E7FFA3;
+    border: none;
+    padding: 1.5vh 3vh;
+    font-size: 2.5vh;
+    cursor: pointer;
+    border-radius: 0.5vh;
+}
+
+.container button:hover {
+    background-color: #D9D9D9;
+}
