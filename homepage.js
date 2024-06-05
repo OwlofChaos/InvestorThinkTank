@@ -1,5 +1,3 @@
-// main.js
-
 function postMessage() {
     const messageInput = document.getElementById('message-input');
     const messageText = messageInput.value.trim();
