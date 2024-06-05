@@ -1,21 +1,25 @@
-document.addEventListener('DOMContentLoaded', loadMyPostsFromLocalStorage);
+function loadMessagesFromLocalStorage() {
+            const savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+            const messagesContainer = document.getElementById('messages');
 
-function loadMyPostsFromLocalStorage() {
-    const savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
-    const myPostsContainer = document.getElementById('my-posts');
+            savedMessages.forEach(msg => {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message';
+                let messageContent = `
+                    <div class="avatar"></div>
+                    <div class="text-content">
+                        <div class="username">${msg.username}</div>
+                `;
+                if (msg.text) {
+                    messageContent += `<div class="message-text">${msg.text}</div>`;
+                }
+                if (msg.image) {
+                    messageContent += `<div class="message-image"><img src="${msg.image}" alt="Posted Image"></div>`;
+                }
+                messageElement.innerHTML = messageContent + `</div>`;
+                messagesContainer.appendChild(messageElement);
+            });
 
-    savedMessages.forEach(msg => {
-        if (msg.username === 'Me') {
-            const messageElement = document.createElement('div');
-            messageElement.className = 'message user';
-            messageElement.innerHTML = `
-                <div class="avatar"></div>
-                <div class="text-content">
-                    <div class="username">Me</div>
-                    <div class="message-text">${msg.text}</div>
-                </div>
-            `;
-            myPostsContainer.appendChild(messageElement);
+            // Scroll to the bottom of the messages container
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
-    });
-}
