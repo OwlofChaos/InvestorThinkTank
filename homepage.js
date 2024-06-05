@@ -13,7 +13,8 @@ function postMessage() {
         const newMessage = {
             username: 'Me',
             text: messageText,
-            image: imageDataUrl
+            image: imageDataUrl,
+            id: Date.now()  // Unique ID for each message
         };
 
         // Save message to local storage
@@ -44,6 +45,7 @@ function addMessageToContainer(message) {
     const messagesContainer = document.getElementById('messages');
     const messageElement = document.createElement('div');
     messageElement.className = 'message';
+    messageElement.dataset.id = message.id;  // Set a unique ID as a data attribute
     let messageContent = `
         <div class="avatar"></div>
         <div class="text-content">
