@@ -21,16 +21,16 @@
     </header>
 
     <div class="buttons">
-        <button class="btn" onclick="changeColor(this, 'all')">Show All</button>
-        <button class="btn" onclick="changeColor(this, 'finance')">Finance</button>
-        <button class="btn" onclick="changeColor(this, 'animals')">Animals</button>
-        <button class="btn" onclick="changeColor(this, 'technology')">Technology</button>
-        <button class="btn" onclick="changeColor(this, 'medical')">Medical</button>
-        <button class="btn" onclick="changeColor(this, 'communications')">Communications</button>
+        <button class="btn active" onclick="filterPosts('all')">Show All</button>
+        <button class="btn" onclick="filterPosts('finance')">Finance</button>
+        <button class="btn" onclick="filterPosts('animals')">Animals</button>
+        <button class="btn" onclick="filterPosts('technology')">Technology</button>
+        <button class="btn" onclick="filterPosts('medical')">Medical</button>
+        <button class="btn" onclick="filterPosts('communications')">Communications</button>
     </div>
 
     <div class="main-content">
-        <div class="chat-container">
+        <div class="chat-container" id="messages">
             <div class="message" data-category="animals">
                 <div class="avatar"></div>
                 <div class="text-content">
