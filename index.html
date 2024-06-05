@@ -12,7 +12,7 @@
         <nav class="nav">
             <a href="index.html">Home</a>
             <a href="recommendation.html">Recommendation</a>
-            <a href="#">MyPost</a>
+            <a href="mypost.html">MyPost</a>
             <a href="#">About Us</a>
         </nav>
         <a href="#">
@@ -21,7 +21,7 @@
     </header>
 
     <div class="main-content">
-        <div class="chat-container">
+        <div class="chat-container" id="chat-container">
             <div class="message">
                 <div class="avatar"></div>
                 <div class="text-content">
@@ -37,8 +37,12 @@
                 </div>
             </div>
         </div>
+        <div class="post-message">
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button onclick="postMessage()">Post</button>
+        </div>
     </div>
 
-    <script src=""></script>
+    <script src="main.js"></script>
 </body>
 </html>
