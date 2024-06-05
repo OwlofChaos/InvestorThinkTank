@@ -21,33 +21,41 @@
     </header>
 
     <div class="buttons">
-        <button class="btn" onclick="changeColor(this)">Show All</button>
-        <button class="btn" onclick="changeColor(this)">Finance</button>
-        <button class="btn" onclick="changeColor(this)">Animals</button>
-        <button class="btn" onclick="changeColor(this)">Technology</button>
-        <button class="btn" onclick="changeColor(this)">Medical</button>
-        <button class="btn" onclick="changeColor(this)">Communications</button>
+        <button class="btn" onclick="changeColor(this, 'all')">Show All</button>
+        <button class="btn" onclick="changeColor(this, 'finance')">Finance</button>
+        <button class="btn" onclick="changeColor(this, 'animals')">Animals</button>
+        <button class="btn" onclick="changeColor(this, 'technology')">Technology</button>
+        <button class="btn" onclick="changeColor(this, 'medical')">Medical</button>
+        <button class="btn" onclick="changeColor(this, 'communications')">Communications</button>
     </div>
 
     <div class="main-content">
         <div class="chat-container">
-            <div class="message">
+            <div class="message" data-category="animals">
                 <div class="avatar"></div>
                 <div class="text-content">
                     <div class="username">Acc1</div>
                     <div class="message-text">A app where dogs may find friends</div>
                 </div>
             </div>
-            <div class="message">
+            <div class="message" data-category="animals">
                 <div class="avatar"></div>
                 <div class="text-content">
                     <div class="username">Acc2</div>
                     <div class="message-text">A app where dogs owners may find friends for their dogs</div>
                 </div>
             </div>
+            <div class="message" data-category="finance">
+                <div class="avatar"></div>
+                <div class="text-content">
+                    <div class="username">Acc3</div>
+                    <div class="message-text">A new investment app for stocks</div>
+                </div>
+            </div>
+            <!-- Add more messages with different data-category attributes -->
         </div>
     </div>
 
-    <script src="recomendation.js"></script>
+    <script src="recommendation.js"></script>
 </body>
 </html>
