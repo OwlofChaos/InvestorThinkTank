@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: #3E5754;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    padding: 2vh 10vh;
+    background: #E7FFA3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 1vh 1vh 1vh rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-size: 5vh;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 200;
+}
+
+.nav a {
+    position: relative;
+    font-size: 3.2vh;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 200;
+    margin-left: 4vh;
+}
+
+.nav a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 0.8vh;
+    background-color: #3E5754;
+    transition: .3s;
+}
+
+.nav a:hover::before {
+    width: 100%;
+}
+
+.profile {
+    width: 10vh;
+    height: 8vh;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 12vh;
+}
+
+.profile-section,
+.details-section {
+    background: #fff;
+    border-radius: 1vh;
+    box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.3);
+    padding: 2vh;
+}
+
+.profile-section {
+    width: 40%;
+    margin-right: 2vh;
+}
+
+.details-section {
+    width: 58%;
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-photo {
+    width: 10vh;
+    margin-bottom: 2vh;
+}
+
+.upload-btn {
+    background-color: #D9D9D9;
+    border: none;
+    padding: 1vh 2vh;
+    font-size: 2vh;
+    cursor: pointer;
+    margin-bottom: 2vh;
+}
+
+.info {
+    width: 100%;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+
+.info-item span:first-child {
+    font-weight: bold;
+}
+
+.edit-btn {
+    background-color: #E7FFA3;
+    border: none;
+    padding: 0.5vh 1vh;
+    font-size: 2vh;
+    cursor: pointer;
+}
+
+.professional-details,
+.reviews-section {
+    margin-bottom: 2vh;
+}
+
+.professional-details h3,
+.reviews-section h3 {
+    margin-bottom: 2vh;
+}
+
+.expertise,
+.experience,
+.ratings {
+    margin-bottom: 2vh;
+}
+
+.expertise-tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background-color: #D9D9D9;
+    border-radius: 1vh;
+    padding: 0.5vh 1vh;
+    margin-right: 1vh;
+    margin-bottom: 1vh;
+}
+
+.review {
+    background-color: #F0F0F0;
+    padding: 1vh;
+    border-radius: 1vh;
+    margin-bottom: 1vh;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1vh;
+}
+
+.reviewer-name {
+    font-weight: bold;
+}
+
+.review-rating {
+    color: gold;
+}
+
+.see-all-reviews {
+    display: block;
+    text-align: right;
+    color: #3E5754;
+    text-decoration: none;
+}
