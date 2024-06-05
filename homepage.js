@@ -68,9 +68,19 @@ function loadMessagesFromLocalStorage() {
 }
 
 function clearMessages() {
+    const savedMessages = JSON.parse(localStorage.getItem('messages')) || [];
+    const remainingMessages = savedMessages.filter(msg => msg.username !== 'Me');
+
+    localStorage.setItem('messages', JSON.stringify(remainingMessages));
+
     const messagesContainer = document.getElementById('messages');
-    messagesContainer.innerHTML = '';
-    localStorage.removeItem('messages');
+    const messages = Array.from(messagesContainer.children);
+
+    messages.forEach(message => {
+        if (message.querySelector('.username').textContent === 'Me') {
+            messagesContainer.removeChild(message);
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', loadMessagesFromLocalStorage);
