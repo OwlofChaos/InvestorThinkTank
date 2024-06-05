@@ -69,10 +69,10 @@ body {
     align-items: center;
     flex-grow: 1;
     width: 100%;
+    margin-top: 12vh; /* Added margin-top to adjust for fixed header */
 }
 
 .chat-container {
-    margin-top: 18vh;
     width: 90%;
     height: 70vh;
     max-width: 80%;
@@ -80,6 +80,7 @@ body {
     padding: 2vh;
     border-radius: 1vh;
     box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.3);
+    overflow-y: auto; /* Added overflow for scrolling */
 }
 
 .message {
@@ -113,4 +114,35 @@ body {
 .message-text {
     margin-bottom: 0.5vh;
     font-size: 2vh;
+}
+
+.post-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vh;
+}
+
+.message-input {
+    width: 70%;
+    padding: 1vh;
+    border: 1px solid #ccc;
+    border-radius: 0.5vh;
+    margin-right: 1vh;
+    font-size: 2vh;
+}
+
+.post-button {
+    padding: 1vh 2vh;
+    background-color: #E7FFA3;
+    border: none;
+    border-radius: 0.5vh;
+    cursor: pointer;
+    font-size: 2vh;
+    box-shadow: 0 0.1vh 0.3vh rgba(0,0,0,0.3);
+    transition: background-color 0.3s;
+}
+
+.post-button:hover {
+    background-color: #d4f08d;
 }
